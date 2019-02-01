@@ -7,20 +7,6 @@ module.exports = {
   entry: {
     main: './index.js'
   },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: [{
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          }
-        }]
-      }
-    ]
-  },
   output: {
     filename: 'muvment.js',
     path: path.resolve(__dirname, buildFolder),
