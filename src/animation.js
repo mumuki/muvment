@@ -1,3 +1,5 @@
+let State = require('./state')
+
 class Animation {
   constructor(clips, player) {
     this.clips = clips;

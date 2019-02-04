@@ -1,3 +1,5 @@
+let State = require('./state')
+
 class Clip {
   constructor(src, duration) {
     this.src = src;
