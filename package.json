@@ -1,0 +1,41 @@
+{
+  "name": "muvment",
+  "version": "1.0.0",
+  "description": "Utilities for SVG based animations",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha ",
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mumuki/muvment.git"
+  },
+  "keywords": [
+    "svg",
+    "animation"
+  ],
+  "author": "Julián Berbel Alt",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/mumuki/muvment/issues"
+  },
+  "homepage": "https://github.com/mumuki/muvment#readme",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mocha": "^5.2.0",
+    "sinon": "^7.2.3",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.2.1"
+  }
+}
