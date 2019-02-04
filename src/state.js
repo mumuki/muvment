@@ -31,7 +31,7 @@ class State {
 
   play(image) {
     this.callbacks.start();
-    this.movie.play(image).then(this.callbacks.end.bind(this));
+    return this.movie.play(image).then(this.callbacks.end.bind(this));
   };
 };
 
