@@ -1,4 +1,3 @@
----
 sudo: false
 language: node_js
 node_js:
@@ -7,3 +6,11 @@ script:
 - npm i && npm run build
 - npm test
 - cd gem && ./bin/setup && bundle exec rake
+deploy:
+  provider: rubygems
+  api_key:
+    secure: qe0NIMcxcnFSEXBAZ80fJL9qw6hwirSJmo4cjSgoiYIAHKS8l5JzQNlydBhxPtSYskbg7eOL5pT5DPNBXCuZIiXbSgKm7jb0p8RxfYkIxnFmEyWFlLkfBOGD99Bj1Roe4stivETX4n2S+4e2qQ/omcpmdp5cdi6/rLRpf7cWEOzIb/oX2imjr6jUMxbErzemc6b+b0qElciqBahz/9lDZ6L5dZmbtlNc7riQVOQNFsupbZ+XlYDJkA0jHt5me72s5DK8CETDSsw/wKzx/C4J51S4B+l5IIMWvxxJ8v2DSgeHqaXft3J9z4sW4ffNLvqXKIwpiy7efpnylBJmjdMEa4/xSH1hSX+V31XwIuwoFnUkPLwZqds+scN3B1pYyssdYcDDw48+Ca7/dKdTaCarAgG4ZZPt30dfwkyS+zBNaoePzsL7GXoZaL+LY+UuixcqkNDrleD/BnA+hK0ACVJJoVyhKf+SC44KJ5SGKcOI3Gs6AOpaTSqcBd5BZpOU9233RFvfGOBv3qYhbO6wEW9XtN5usUgYBvQBxArpQjYtOI6sDDOPZkXyBrsupWKVJSm8Da+q6HKghqNM2kIKyWadwmZTHla9o+uypddZ7MOodB5xSDse8zjmAL8THrplQlPZY420jbKLBBfrlODd6pkYU/G+//DOGH59o5wNkXkvp0U=
+  gem: muvment
+  on:
+    tags: true
+    repo: mumuki/muvment
