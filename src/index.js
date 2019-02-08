@@ -2,6 +2,7 @@ let Animation = require('./animation')
 let Scene = require('./scene')
 let State = require('./state')
 let Clip = require('./clip')
+let Character = require('./character')
 
 let $ = require('jquery')
 
@@ -41,6 +42,7 @@ function addImage(object, imageName, urlPrefix) {
 muvment.State = State;
 muvment.Scene = Scene;
 muvment.Clip = Clip;
+muvment.Character = Character;
 
 muvment.animation = {
   sequence: sequence,
