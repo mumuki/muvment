@@ -7,7 +7,7 @@ class Clip {
   }
 
   play(where) {
-    where.src = this.src;
+    where.attr('src', this.src);
     
     return new Promise((resolve) => {
       setTimeout(resolve, this.duration);
