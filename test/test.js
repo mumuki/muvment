@@ -7,6 +7,7 @@ let muvment = require('../src/index');
 describe ('muvment', () => {
   let newClip = (src, duration) => {
     let clip = new muvment.Clip(src, duration);
+
     return { clip: clip, spy: sinon.spy(clip, 'play') };
   };
 
@@ -14,6 +15,7 @@ describe ('muvment', () => {
   let { clip: clip2, spy: spy2 } = newClip("some/other/source", 20);
   let { clip: clip3, spy: spy3 } = newClip("yet/another/source", 30);
   let sequenceAnimation = muvment.animation.sequence([clip1, clip2, clip3]);
+  let canvas = { attr: (attr, value) => { canvas[attr] = value; } }
 
   beforeEach(() => {
     spy1.resetHistory();
@@ -24,9 +26,7 @@ describe ('muvment', () => {
   describe('Clip', () => {
     context('play', () => {
       it('changes the canvas src', async () => {
-        let canvas = {};
-        
-        await new muvment.Clip('some/source', 10).play(canvas);
+        await clip1.play(canvas);
 
         assert.equal(canvas.src, 'some/source');
       });
@@ -36,7 +36,7 @@ describe ('muvment', () => {
   describe('Animation', () => {
     context('sequence', () => {
       it('plays every clip sequentially', async () => {
-        await sequenceAnimation.play({});
+        await sequenceAnimation.play(canvas);
 
         sinon.assert.callOrder(spy1, spy2, spy3);
       });
@@ -46,7 +46,7 @@ describe ('muvment', () => {
       it('plays only one clip randomly', async () => {
         let animation = muvment.animation.oneOf([clip1, clip1, clip1]);
 
-        await animation.play({});
+        await animation.play(canvas);
 
         sinon.assert.calledOnce(spy1);
       });
@@ -64,7 +64,7 @@ describe ('muvment', () => {
         state.onStart(stateStartSpy);
         state.onEnd(stateEndSpy);
 
-        await state.play({});
+        await state.play(canvas);
 
         sinon.assert.callOrder(stateStartSpy, spy1, spy2, spy3, stateEndSpy);
       });
@@ -78,7 +78,7 @@ describe ('muvment', () => {
 
         character.actions = { run: sequenceAnimation }
 
-        await character.playAnimation('run', {});
+        await character.playAnimation('run', canvas);
 
         sinon.assert.callOrder(spy1, spy2, spy3);
       });
@@ -88,7 +88,7 @@ describe ('muvment', () => {
 
         character.clips = { run: clip1 }
 
-        await character.playAnimation('run', {});
+        await character.playAnimation('run', canvas);
 
         sinon.assert.called(spy1);
       });
@@ -98,7 +98,7 @@ describe ('muvment', () => {
 
         character.actions = { run: sequenceAnimation }
 
-        assert.doesNotThrow(async () => { await character.playAnimation('run', {}) });
+        assert.doesNotThrow(async () => { await character.playAnimation('run', canvas) });
 
         sinon.assert.notCalled(spy1);
         sinon.assert.notCalled(spy2);
