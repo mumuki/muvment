@@ -19,9 +19,9 @@ class State {
     return this.on('end', callback);
   };
 
-  onEndSwitch(character, stateName) {
+  onEndSwitch(scene, stateName) {
     return this.onEnd(() => {
-      return character.switch(stateName);
+      return scene.switch(stateName);
     });
   };
 
