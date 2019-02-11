@@ -1,5 +1,6 @@
 class Scene {
-  constructor() {
+  constructor(canvas) {
+    this.canvas = canvas;
     this.states = {};
   }
 
@@ -14,8 +15,8 @@ class Scene {
     this.play();
   };
 
-  play(image) {
-    this.currentState.play(image);
+  play() {
+    this.currentState.play(this.canvas);
   };
 };
 
