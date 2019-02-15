@@ -43,7 +43,7 @@ function addImage(object, imageName, urlPrefix) {
   return new Promise((resolve) => {
     $.get(url, (data) => {
       let duration = parseFloat($(data).find('animate').attr('dur') || 0, 10) * 1000;
-      object[imageName] = new Clip(url, duration);
+      object[imageName] = new Clip('data:image/svg+xml;base64,' + btoa(data.documentElement.outerHTML), duration);
       resolve();
     });
   });
