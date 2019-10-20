@@ -23,9 +23,9 @@ function sequence(clips) {
     let accum = Promise.resolve();
 
     clips.forEach((clip) =>
-      accum = accum.then(() => 
+      accum = accum.then(() =>
         clip.play(where)));
-    
+
     return accum;
   });
 }
