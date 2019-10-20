@@ -36,12 +36,20 @@ function oneOf(clips) {
   });
 }
 
+// Parses an XML value only if it is a string.
+// This is required in order to muvement work also
+// when character's ajax response does not expose a proper content-type
+function parseXmlIdNeeded(data) {
+  return typeof(data) === 'string' ? new DOMParser().parseFromString(data, "text/xml") : data;
+}
+
 function addImage(object, imageName, urlPrefix) {
   let url = urlPrefix + imageName + '.svg';
   if (object[imageName]) return Promise.resolve();
 
   return new Promise((resolve) => {
     $.get(url, (data) => {
+      data = parseXmlIdNeeded(data);
       let duration = parseFloat($(data).find('animate').attr('dur') || 0, 10) * 1000;
       object[imageName] = new Clip('data:image/svg+xml;base64,' + btoa(data.documentElement.outerHTML), duration);
       resolve();
