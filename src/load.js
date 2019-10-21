@@ -41,10 +41,19 @@ function loadCharacters(where, src){
     return animation.addImage(where[character].clips, name, `/character/${character}/`);
   }
 
-  return $.get(src).then((animations) => {
-    loadAnimationGroup(animations.extra);
-    return loadAnimationGroup(animations.main);
-  });
+  // Parses a JSON value only if it is a string.
+  // This is required in order to make muvement work also
+  // when animations's ajax response does not expose a proper content-type
+  function parseJsonIfNeeded(value) {
+    return typeof(value) === 'string' ? JSON.parse(value) : value;
+  }
+
+  return $.get(src)
+          .then(parseJsonIfNeeded)
+          .then((animations) => {
+            loadAnimationGroup(animations.extra);
+            return loadAnimationGroup(animations.main);
+          });
 }
 
 module.exports = loadCharacters;
