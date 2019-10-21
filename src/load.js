@@ -42,7 +42,7 @@ function loadCharacters(where, src){
   }
 
   // Parses a JSON value only if it is a string.
-  // This is required in order to muvement work also
+  // This is required in order to make muvement work also
   // when animations's ajax response does not expose a proper content-type
   function parseJsonIfNeeded(value) {
     return typeof(value) === 'string' ? JSON.parse(value) : value;
