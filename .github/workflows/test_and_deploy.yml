@@ -21,6 +21,8 @@ jobs:
         bundler-cache: true
         working-directory: gem
     - name: Install JavaScript dependencies and build
+      env:
+        NODE_OPTIONS: --openssl-legacy-provider
       run: |
         npm i
         npm run build
